@@ -24,11 +24,17 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+
+  # DESING PATTERN
   equatable: ^2.0.3
   flutter_bloc: ^7.1.0
-  google_fonts: ^2.1.0
+
+  # SERVICE
   http: ^0.13.3
   url_launcher: ^6.0.9
+
+  # THEMING
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
