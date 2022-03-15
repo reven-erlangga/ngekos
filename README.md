@@ -20,6 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 In this repository there are two folders
 - Client (Flutter)
 - Server (Node JS)
+And database file (MySQL)
 
 1. Run node js : npm run
 2. Change base url in client with your ip address
