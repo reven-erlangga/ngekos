@@ -15,6 +15,10 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Image
+![Overview](https://raw.githubusercontent.com/reven-erlangga/ngekos/master/image/Overview.png "Overview")
+![Homepage](https://raw.githubusercontent.com/reven-erlangga/ngekos/master/image/Homepage.png "Homepage")
+
 ## Instalation
 
 In this repository there are two folders
