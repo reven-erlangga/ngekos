@@ -1,0 +1,4 @@
+#Wed Mar 16 00:54:42 ICT 2022
+base.0=E\:\\My Data\\Project\\Mobile\\Flutter\\Ngekos\\flutter_ngekos\\client\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

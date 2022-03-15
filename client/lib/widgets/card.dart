@@ -203,34 +203,59 @@ class TipsCard extends StatelessWidget {
 
 // SECTION facility card
 class PhotoCard extends StatelessWidget {
+  final Feature feature;
   final String title, description;
+  final String imageUrl;
 
-  const PhotoCard({Key? key, required this.title, required this.description})
+  const PhotoCard(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.feature,
+      required this.imageUrl})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Image.asset(
-        //   facility.imageUrl ?? '',
-        //   width: 32,
-        // ),
-        SizedBox(
-          height: 10,
-        ),
-        Text.rich(TextSpan(
-            text: " s",
+    return ListTile(
+      leading: Image.asset(
+        imageUrl,
+        width: 24,
+      ),
+      title: Text.rich(
+        TextSpan(
+            text: title,
             style: purpleTextStyle.copyWith(
-                fontSize: 16.0, fontWeight: FontWeight.bold),
+                fontSize: 14.0, fontWeight: FontWeight.bold),
             children: [
               TextSpan(
-                  text: " " + description,
-                  style: grayTextStyle.copyWith(fontSize: 16.0))
-            ])),
-      ],
+                  text: "  " + description,
+                  style: grayTextStyle.copyWith(fontSize: 14.0))
+            ]),
+      ),
     );
   }
 }
 // !SECTION
+
+class ContactCard extends StatelessWidget {
+  final String title, imageUrl;
+
+  const ContactCard({Key? key, required this.title, required this.imageUrl})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.asset(
+        imageUrl,
+        width: 24,
+      ),
+      title: Text(
+        title,
+        style: purpleTextStyle.copyWith(
+            fontSize: 14.0, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}

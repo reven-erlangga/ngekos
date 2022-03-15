@@ -1,7 +1,7 @@
 part of 'repository.dart';
 
 class CityRepository {
-  final String baseUrl = "http://192.168.0.107:3000/cities";
+  final String baseUrl = "http://192.168.0.106:3000/cities";
 
   get $baseUrl => baseUrl;
 

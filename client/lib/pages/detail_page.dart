@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ngekos/models/feature.dart';
 import 'package:flutter_ngekos/models/place.dart';
 import 'package:flutter_ngekos/pages/error_page.dart';
 import 'package:flutter_ngekos/theme.dart';
+import 'package:flutter_ngekos/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
@@ -25,7 +27,7 @@ class DetailPage extends StatelessWidget {
       body: SafeArea(
           child: Stack(
         children: [
-          Image.asset(
+          Image.network(
             place.imageUrl ?? '',
             width: size.width,
             height: size.height / 2.2,
@@ -89,13 +91,35 @@ class DetailPage extends StatelessWidget {
                                   return Image.asset(
                                     'assets/icon_star.png',
                                     width: 20,
-                                    color: (index + 1) <= 2
+                                    color: (index + 1) <= (place.rating ?? 5)
                                         ? null
                                         : Color(0xff989BA1),
                                   );
                                 }),
                           ),
                         ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: edge),
+                      child: Text(
+                        'Description',
+                        style: regularTextStyle.copyWith(fontSize: 16.0),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: edge),
+                      child: Text(
+                        place.description ?? '-',
+                        style: regularTextStyle.copyWith(
+                            fontSize: 14.0, wordSpacing: 4.0),
+                        textAlign: TextAlign.justify,
                       ),
                     ),
                     SizedBox(
@@ -113,31 +137,55 @@ class DetailPage extends StatelessWidget {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: edge),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: const EdgeInsets.symmetric(horizontal: edge / 2),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // PhotoCard(
-                          //     facility: Facility(
-                          //         id: 0,
-                          //         imageUrl: 'assets/icon_kitchen.png',
-                          //         featureNumber: 3,
-                          //         featureDesc: 'Kitchen')),
-                          // PhotoCard(
-                          //     facility: Facility(
-                          //         id: 1,
-                          //         imageUrl: 'assets/icon_bedroom.png',
-                          //         featureNumber: 2,
-                          //         featureDesc: 'Bedroom')),
-                          // FacilityCard(
-                          //     facility: Facility(
-                          //         id: 2,
-                          //         imageUrl: 'assets/icon_cupboard.png',
-                          //         featureNumber: 3,
-                          //         featureDesc: 'Lemari')),
+                          PhotoCard(
+                            title: place.feature?.bedroom ?? '0',
+                            description: 'Kitchen',
+                            imageUrl: 'assets/icon_kitchen.png',
+                            feature: place.feature ?? Feature(),
+                          ),
+                          PhotoCard(
+                            title: place.feature?.bedroom ?? '0',
+                            description: 'Bedroom',
+                            imageUrl: 'assets/icon_bedroom.png',
+                            feature: place.feature ?? Feature(),
+                          ),
+                          PhotoCard(
+                            title: place.feature?.bedroom ?? '0',
+                            description: 'Cupboard',
+                            imageUrl: 'assets/icon_cupboard.png',
+                            feature: place.feature ?? Feature(),
+                          ),
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: edge),
+                      child: Text(
+                        'Contact',
+                        style: regularTextStyle.copyWith(fontSize: 16.0),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: edge / 2),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ContactCard(
+                                  title: place.phone ?? '-',
+                                  imageUrl: "assets/icon_phone.png"),
+                            ])),
+
                     // NOTE photo
                     SizedBox(
                       height: 30,
@@ -189,19 +237,25 @@ class DetailPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: edge),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            'Jln kenangan',
-                            style: grayTextStyle,
-                          ),
-                          InkWell(
-                            onTap: () => _launchUrl(
-                                "https://goo.gl/maps/MLJpQMtn5svDmSge8"),
-                            child: Image.asset(
-                              'assets/btn_map.png',
-                              width: 40,
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: edge),
+                              child: Text(
+                                place.address ?? '',
+                                style: grayTextStyle,
+                              ),
                             ),
-                          )
+                          ),
+                          if (place.mapUrl != "")
+                            InkWell(
+                              onTap: () => _launchUrl(place.mapUrl ?? ''),
+                              child: Image.asset(
+                                'assets/btn_map.png',
+                                width: 40,
+                              ),
+                            )
                         ],
                       ),
                     ),
@@ -244,18 +298,29 @@ class DetailPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Image.asset(
-                    'assets/btn_back.png',
-                    scale: 4,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 10,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
                   ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Image.asset(
-                    'assets/btn_wishlist.png',
-                    scale: 4,
+                  child: InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Image.asset(
+                      'assets/btn_back.png',
+                      scale: 4,
+                    ),
                   ),
                 ),
               ],

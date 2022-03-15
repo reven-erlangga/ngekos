@@ -9,6 +9,7 @@ const Place = db.define(
     "places",
     {
         name: { type: Sequelize.STRING },
+        description: { type: Sequelize.STRING },
         city_id: { type: Sequelize.INTEGER },
         country_id: { type: Sequelize.BIGINT },
         price: { type: Sequelize.INTEGER },
