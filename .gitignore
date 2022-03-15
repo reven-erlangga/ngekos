@@ -46,4 +46,4 @@ app.*.map.json
 /client/android/app/release
 
 # Node Mudules
-/server/node_modules/
+**/server/node_modules
