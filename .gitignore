@@ -44,3 +44,6 @@ app.*.map.json
 /client/android/app/debug
 /client/android/app/profile
 /client/android/app/release
+
+# Node Mudules
+/server/node_modules/
