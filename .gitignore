@@ -21,8 +21,8 @@
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
+**/client/doc/api/
+**/client/ios/Flutter/.last_build_id
 /client/.dart_tool/
 /client/.flutter-plugins
 /client/.flutter-plugins-dependencies
@@ -45,5 +45,16 @@ app.*.map.json
 /client/android/app/profile
 /client/android/app/release
 
-# Node Mudules
-**/server/node_modules
+# Node js related
+/server/node_modules/
+/server/build/
+/server/npm-debug.log
+/server/.env
+/server/.env.test
+/server/.env.production
+/server/.DS_Store
+/server/.npm
+/server/.eslintcache
+/server/logs/
+/server/*.log
+/server/npm-debug.log*
