@@ -14,3 +14,21 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Instalation
+
+In this repository there are two folders
+- Client (Flutter)
+- Server (Node JS)
+
+1. Run node js : npm run
+2. Change base url in client with your ip address
+3. Done!
+
+## Support Me
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R27Z8R8)
+
+If this is template is useful for you and you want to support me, I really appreciate it. 
+This will give me motivation to keep doing more content like this.
+
+Do you want to add more features? [Reach me out](https://reven-erlangga.carrd.co/)
