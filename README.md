@@ -22,8 +22,8 @@ samples, guidance on mobile development, and a full API reference.
 ## Instalation
 
 In this repository there are two folders
-- Client (Using Flutter)
-- Server (Using Node JS)
+- Client (Flutter)
+- Server (Node JS)
 And database file (MySQL)
 
 1. Run node js : npm run
